@@ -193,15 +193,12 @@ public class Snake {
 	}
 
 	private static void initFrame() {
-		frame.setIgnoreRepaint(true);
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-
-		canvas.setFocusable(false);
 		canvas.setSize(windowX, windowY);
+		frame.add(canvas);
+		frame.pack();
+		frame.setIgnoreRepaint(true);
 		canvas.createBufferStrategy(2);
-		
 		buffer = canvas.getBufferStrategy();
 		// Get graphics configuration...
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -212,6 +209,9 @@ public class Snake {
 		// Objects needed for rendering...
 		graphics = null;
 		g2d = null;
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		canvas.setFocusable(false);
 
 		// controls
 		frame.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -241,8 +241,5 @@ public class Snake {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		
-		frame.add(canvas);
-		frame.pack();
 	}
 }
